@@ -5,8 +5,8 @@ namespace RandomBoxes
 {
     class Program
     {
-        private static int _width = 50;
-        private static int _height = 20;
+        private const int Width = 50;
+        private const int Height = 20;
 
         static void Main(string[] args)
         {
@@ -27,12 +27,13 @@ namespace RandomBoxes
         {
             var random = new Random();
             var shapes = new Shape[5];
-            for (var i = 0; i < shapes.Length; i++)
+            shapes[0] = new Text(10, 5, "Takk mr. Terje", random);
+            for (var i = 1; i < shapes.Length; i++)
             {
                 if (random.Next(0, 2) == 0)
-                    shapes[i] = new Rectangle(random, _width, _height);
+                    shapes[i] = new Rectangle(random, Width, Height);
                 else
-                    shapes[i] = new Triangle(random, _height);
+                    shapes[i] = new Triangle(random, Height);
             }
             return shapes;
         }
@@ -40,9 +41,9 @@ namespace RandomBoxes
         private static void Show(Shape[] shapes)
         {
             Console.Clear();
-            for (var row = 0; row < _height; row++)
+            for (var row = 0; row < Height; row++)
             {
-                for (var col = 0; col < _width; col++)
+                for (var col = 0; col < Width; col++)
                 {
                     var hasFoundCharacterToPrint = false;
                     foreach (var shape in shapes)
